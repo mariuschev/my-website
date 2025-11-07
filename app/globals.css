@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* palette from design */
+  --color-white: #ffffff;
+  --color-beige: #CDC7BD;
+  --color-maroon: #590707;
+  --color-maroon-rgb: 89,7,7;
+  --color-red: #A30404;
+  --color-grey: #736D66;
+  --color-blackish: #04090C;
 }
 
 @theme inline {
@@ -23,4 +31,48 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hero specific helpers */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 43, 86, 0.8);
+}
+
+.hero h1 {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* Themed elements */
+.site-header {
+  background: var(--color-maroon);
+  color: var(--color-white);
+}
+.site-header a { color: var(--color-white); }
+
+.hero-overlay {
+  background-color: rgba(var(--color-maroon-rgb), 0.82);
+}
+
+.btn-primary {
+  background: var(--color-red);
+  color: var(--color-white);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.muted-beige {
+  color: var(--color-beige);
+}
+
+.accent-maroon {
+  color: var(--color-maroon);
 }
