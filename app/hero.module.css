@@ -1,0 +1,138 @@
+/* Crossfade animation for two hero background layers */
+.heroWrap {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* allow page to scroll while backgrounds remain fixed */
+  overflow: visible;
+}
+
+.bgLayer {
+  /* make background fixed so it doesn't move on scroll */
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  will-change: opacity;
+  animation: crossfade 10s linear infinite;
+  background-attachment: fixed;
+}
+
+.bgLayer.bg2 {
+  animation-delay: 5s; /* start halfway through so they alternate */
+}
+
+@keyframes crossfade {
+  0% { opacity: 1; }
+  45% { opacity: 1; }
+  55% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.overlay {
+  /* overlay fixed above the bg layers but behind content */
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* sits above backgrounds (z:0) and below content (z:10) */
+  /* semi-transparent bordeaux so the image is visible through the color */
+  background-color: rgba(var(--color-maroon-rgb), 0.65);
+  /* keep pointer events off so overlay doesn't block interactions */
+  pointer-events: none;
+  /* gentle fade when toggling or during page transitions */
+  transition: background-color 240ms ease, opacity 240ms ease;
+}
+
+/* slightly reduce overlay intensity on small screens to preserve legibility */
+@media (max-width: 640px) {
+  .overlay { opacity: 0.5; }
+}
+
+.logoSmall { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45)); }
+
+/* Social icon buttons (circular) */
+.socials {
+  display: inline-flex; /* container inline center */
+  gap: 12px;
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+  box-shadow: none;
+}
+
+.socials a:hover,
+.socials a:focus {
+  background: var(--color-white);
+  color: var(--color-maroon);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  outline: none;
+}
+
+.socials a:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+@media (max-width: 640px) {
+  .socials a { width: 40px; height: 40px; }
+}
+
+/* CTA (outlined) like the attached image */
+.cta {
+  display: inline-block;
+  /* smaller padding for a more compact button */
+  padding: 0.45rem 0.9rem;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  background: transparent;
+  /* square corners */
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, color 160ms ease, transform 140ms ease, box-shadow 140ms ease;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.cta:hover,
+.cta:focus {
+  background: var(--color-white);
+  color: var(--color-maroon);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.24);
+  outline: none;
+}
+
+.cta:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+@media (max-width: 640px) {
+  .cta { padding: 0.4rem 0.8rem; letter-spacing: 0.12em; font-size: 0.9rem; }
+}
