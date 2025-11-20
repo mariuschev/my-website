@@ -1,4 +1,4 @@
-import { allura } from "../layout"; // 🔥 Import OBLIGATOIRE
+import { allura } from "../layout"; // 🔥 Import obligatoire
 
 export default function Actualites() {
   const events = [
@@ -8,6 +8,7 @@ export default function Actualites() {
       date: "12 Juin 2025",
       description:
         "Moment de célébration réunissant étudiants, professeurs et alumni du Master.",
+      image: "./photos_actualites/exemple.jpg",
     },
     {
       id: 2,
@@ -15,6 +16,7 @@ export default function Actualites() {
       date: "22 Mars 2025",
       description:
         "Découverte des métiers du droit des affaires au sein d’un grand cabinet parisien.",
+      image: "./photos_actualites/exemple.jpg",
     },
     {
       id: 3,
@@ -22,13 +24,14 @@ export default function Actualites() {
       date: "10 Novembre 2024",
       description:
         "Retrouvailles inter-promotions autour d’un cocktail organisé à Paris.",
+      image: "./photos_actualites/exemple.jpg",
     },
   ];
 
   return (
     <main className="min-h-screen bg-white py-24">
-      <div className="mx-auto max-w-4xl px-6">
-
+      <div className="mx-auto max-w-7xl px-8">
+        
         {/* Titre calligraphique */}
         <div className="text-center mb-20">
           <h1
@@ -45,36 +48,50 @@ export default function Actualites() {
         {/* Timeline */}
         <div className="relative border-l border-zinc-200">
 
-          {/* Ligne vin animée */}
+          {/* Ligne vin */}
           <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#5a0f19] opacity-60 animate-pulse"></div>
 
           {events.map((event) => (
-            <div key={event.id} className="relative pl-12 mb-16">
+            <div key={event.id} className="relative pl-12 mb-20">
 
               {/* Pastille */}
-              <div className="absolute -left-[10px] top-1 w-5 h-5 bg-white border-[3px] border-[#5a0f19] rounded-full shadow-sm"></div>
+              <div className="absolute -left-[10px] top-2 w-5 h-5 bg-white border-[3px] border-[#5a0f19] rounded-full shadow-sm"></div>
 
-              {/* Card */}
+              {/* CARD agrandie */}
               <div
-                className="bg-white border border-zinc-100 shadow-sm
-                           hover:shadow-lg transition-all duration-300 
-                           rounded-2xl p-8"
+                className="bg-white border border-zinc-100 shadow-md 
+                           hover:shadow-xl transition-all duration-300 
+                           rounded-2xl p-12 flex gap-10 items-start"
               >
-                <div className="inline-block bg-[#5a0f19] text-white text-xs font-semibold px-4 py-1 rounded-full shadow-sm">
-                  {event.date}
+
+                {/* IMAGE sur la gauche */}
+                <div className="w-72 h-48 flex-shrink-0 rounded-xl overflow-hidden border border-zinc-200 shadow-sm">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                <h2 className="mt-5 text-2xl font-semibold text-black">
-                  {event.title}
-                </h2>
+                {/* CONTENU */}
+                <div className="flex-1">
+                  <div className="inline-block bg-[#5a0f19] text-white text-xs font-semibold px-4 py-1 rounded-full shadow-sm">
+                    {event.date}
+                  </div>
 
-                <p className="mt-3 text-zinc-700 leading-relaxed">
-                  {event.description}
-                </p>
+                  <h2 className="mt-5 text-3xl font-semibold text-black">
+                    {event.title}
+                  </h2>
 
-                <button className="mt-5 text-sm font-medium text-[#5a0f19] hover:underline">
-                  En savoir plus →
-                </button>
+                  <p className="mt-4 text-zinc-700 leading-relaxed text-lg">
+                    {event.description}
+                  </p>
+
+                  <button className="mt-6 text-sm font-medium text-[#5a0f19] hover:underline">
+                    En savoir plus →
+                  </button>
+                </div>
+
               </div>
             </div>
           ))}
