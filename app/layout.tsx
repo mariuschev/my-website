@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Allura } from "next/font/google";
 import { allura } from "./lib/fonts";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -46,6 +47,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="site-content">{children}</main>
+        <Footer />
       </body>
     </html>
   );

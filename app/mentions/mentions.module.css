@@ -1,0 +1,60 @@
+/* Nice layout for the Mentions Légales page */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+.card {
+  /* use the site's grey from the palette for the card background */
+  background: var(--color-grey);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+  color: var(--color-beige);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 0 0 72px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-white);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.aside {
+  border-right: 1px solid rgba(255,255,255,0.03);
+  padding-right: 20px;
+}
+.contact { margin-top: 8px; font-size: 0.98rem; color: var(--color-beige); }
+.sectionTitle { color: var(--color-white); font-weight: 700; margin-top: 8px; }
+.proseBlock { color: var(--color-beige); }
+.muted { color: rgba(255,255,255,0.75); }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .logo { width: 56px; height: 56px; flex: 0 0 56px; }
+  .aside { border-right: none; padding-right: 0; }
+}
+
+/* print friendly */
+@media print {
+  .card { box-shadow: none; border: none; background: white; color: black; }
+  .container { padding: 12mm; }
+}

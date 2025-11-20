@@ -44,11 +44,11 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         {/* left links */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/actualites" className="nav-link">
-            Actualités
-          </Link>
           <Link href="/accueil" className="nav-link">
             Accueil
+          </Link>
+          <Link href="/actualites" className="nav-link">
+            Actualités
           </Link>
           <Link href="/partenaires" className="nav-link">
             Nos partenaires

@@ -136,3 +136,42 @@ body {
 
 /* hidden state used by Header.tsx to slide header out of view */
 .site-header--hidden { transform: translateY(-120%); }
+
+/* Footer styles matching site design language */
+.site-footer {
+  background: rgba(4,6,8,0.92);
+  color: var(--color-beige);
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.site-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.site-footer .footer-logo img { display: block; border-radius: 8px; }
+.site-footer .muted-beige { color: var(--color-beige); }
+.site-footer .nav-legal { display: block; margin-top: 4px; color: var(--color-beige); font-weight: 600; }
+.site-footer .footer-nav { gap: 0.75rem; }
+.site-footer .footer-nav .nav-link { color: var(--color-beige); opacity: 0.95; padding: 6px 8px; }
+.site-footer .footer-nav .nav-link:hover { color: var(--color-white); }
+.site-footer .footer-socials a { margin-left: 6px; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: rgba(var(--color-maroon-rgb), 0.25); color: var(--color-white); transition: transform 160ms ease, background 160ms ease; }
+.site-footer .footer-socials a:hover { background: var(--color-white); color: var(--color-maroon); transform: translateY(-3px); }
+.site-footer__bottom { padding-bottom: 28px; }
+
+@media (max-width: 768px) {
+  .site-footer__inner { flex-direction: column; align-items: center; text-align: center; }
+  .site-footer .footer-nav { order: 3; }
+  .site-footer .footer-right { order: 2; }
+}
+
+/* On wider screens keep footer content on a single line without wrapping */
+@media (min-width: 769px) {
+  .site-footer__inner { flex-wrap: nowrap; align-items: center; }
+  .site-footer .footer-left { flex: 0 0 auto; margin-right: 1rem; }
+  .site-footer .footer-right { flex: 0 0 auto; margin-left: 1rem; }
+  .site-footer .footer-nav {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex: 1 1 auto;
+    white-space: nowrap; /* prevent links wrapping */
+    overflow: hidden;
+  }
+  .site-footer .footer-nav .nav-link { display: inline-block; padding: 6px 8px; }
+}
