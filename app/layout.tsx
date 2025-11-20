@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Allura } from "next/font/google";
+import { allura } from "./lib/fonts";
 import Header from "./components/Header";
 import "./globals.css";
 
@@ -15,12 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 /* -------------------------------------------
-   🔥 Police cursive Allura (calligraphique)
+  🔥 Police cursive Allura (calligraphique)
 -------------------------------------------- */
-export const allura = Allura({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 /* -------------------------------------------
    Metadata du site
