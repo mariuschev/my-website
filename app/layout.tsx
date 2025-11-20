@@ -48,7 +48,7 @@ export default function RootLayout({
         `}
       >
         <Header />
-        {children}
+        <main className="site-content">{children}</main>
       </body>
     </html>
   );

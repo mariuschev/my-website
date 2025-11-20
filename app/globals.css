@@ -11,6 +11,8 @@
   --color-red: #A30404;
   --color-grey: #736D66;
   --color-blackish: #04090C;
+  /* header offset used to avoid content being hidden by fixed header */
+  --site-header-offset: 120px;
 }
 
 @theme inline {
@@ -51,10 +53,62 @@ body {
 
 /* Themed elements */
 .site-header {
-  background: var(--color-maroon);
-  color: var(--color-white);
+  background: var(--background); /* white */
+  color: var(--color-blackish);
+  border-bottom: 1px solid rgba(15,15,15,0.04);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 60;
+  transition: transform 260ms ease, background-color 200ms ease;
 }
-.site-header a { color: var(--color-white); }
+.site-header a { color: var(--color-blackish); text-decoration: none; }
+
+/* Nav link style used in Header */
+.site-header .nav-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  /* reduce letter-spacing so long labels are less likely to wrap */
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-blackish);
+  padding: 0.4rem 0.2rem;
+  /* prevent wrapping of each label */
+  white-space: nowrap;
+}
+.site-header .nav-link:hover,
+.site-header .nav-link:focus {
+  color: var(--color-maroon);
+  text-decoration: none;
+  outline: none;
+}
+
+/* thin decorative line above nav links on hover */
+.site-header .nav-link {
+  position: relative;
+  padding-top: 0.48rem; /* room for the line; slightly reduced to compact header */
+}
+.site-header .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 6px; /* position the line above the text */
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 28px;
+  height: 2px;
+  background: var(--color-maroon);
+  border-radius: 1px;
+  opacity: 0;
+  transition: transform 180ms ease, opacity 160ms ease;
+}
+.site-header .nav-link:hover::before,
+.site-header .nav-link:focus::before {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
 
 .hero-overlay {
   background-color: rgba(var(--color-maroon-rgb), 0.82);
@@ -76,3 +130,9 @@ body {
 .accent-maroon {
   color: var(--color-maroon);
 }
+
+/* provide top padding for main content so fixed header doesn't overlap */
+.site-content { padding-top: var(--site-header-offset); }
+
+/* hidden state used by Header.tsx to slide header out of view */
+.site-header--hidden { transform: translateY(-120%); }

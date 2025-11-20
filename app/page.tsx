@@ -4,7 +4,10 @@ import styles from "./hero.module.css";
 
 export default function Home() {
   return (
-    <header className={`${styles.heroWrap} min-h-screen relative flex items-center justify-center text-center text-white`}>
+    <header
+      className={`${styles.heroWrap} min-h-screen relative flex items-center justify-center text-center text-white`}
+      style={{ marginTop: 'calc(var(--site-header-offset) * -1 + 28px)' }}
+    >
       {/* two background layers that crossfade */}
       <div
         className={styles.bgLayer}
