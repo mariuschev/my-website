@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -27,11 +28,11 @@ export default function Footer() {
           <Link href="/accueil" className="nav-link">Accueil</Link>
           <Link href="/formation" className="nav-link">La formation</Link>
           <Link href="/association" className="nav-link">L'association</Link>
-          <Link href="/partenaires" className="nav-link">Nos partenaires</Link>
+          <Link href="/partenaires/professionnels" className="nav-link">Nos partenaires</Link>
           <Link href="/actualites" className="nav-link">Nos événements</Link>
           <Link href="/etudiants/promotions" className="nav-link">Promotions</Link>
-          <Link href="/etudiants/que-sont-ils-devenues" className="nav-link">Que sont-ils devenues</Link>
-          <Link href="/contact" className="nav-link">Contact</Link>
+          <Link href="/etudiants/que-sont-ils-devenus" className="nav-link">Que sont-ils devenus</Link>
+          <Link href="mailto:m2daf@gmail.com?subject=Contact%20Master%202 via le%20site%20web" className="nav-link">Contact</Link>
         </nav>
 
         <div className="footer-right flex items-center gap-4">

@@ -15,6 +15,12 @@
   --site-header-offset: 120px;
 }
 
+/* Prevent layout shift when pages have/don't have a vertical scrollbar */
+html {
+  overflow-y: scroll; /* always reserve scrollbar gutter on desktop browsers */
+  scrollbar-gutter: stable; /* newer browsers: keep gutter stable to avoid shifts */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

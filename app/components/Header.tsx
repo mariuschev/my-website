@@ -10,6 +10,8 @@ export default function Header() {
   const [isHidden, setIsHidden] = useState(false);
   const [studentsOpen, setStudentsOpen] = useState(false);
   const studentsRef = useRef<HTMLDivElement | null>(null);
+  const [partnersOpen, setPartnersOpen] = useState(false);
+  const partnersRef = useRef<HTMLDivElement | null>(null);
 
   // Hide header after a certain scroll distance (px)
   const HIDE_AFTER_PX = 200;
@@ -52,9 +54,27 @@ export default function Header() {
           <Link href="/actualites" className="nav-link">
             Actualités
           </Link>
-          <Link href="/partenaires" className="nav-link">
-            Nos partenaires
-          </Link>
+          <div
+            ref={partnersRef}
+            className={`nav-item ${partnersOpen ? "open" : ""}`}
+            onMouseEnter={() => setPartnersOpen(true)}
+            onMouseLeave={() => setPartnersOpen(false)}
+            onFocus={() => setPartnersOpen(true)}
+            onBlur={(e: React.FocusEvent) => {
+              const related = e.relatedTarget as Node | null;
+              if (!partnersRef.current || !related || !partnersRef.current.contains(related)) {
+                setPartnersOpen(false);
+              }
+            }}
+          >
+            <span className="nav-link nav-parent" aria-haspopup="true" aria-expanded={partnersOpen} tabIndex={0}>
+              Nos partenaires
+            </span>
+            <div className="subnav" role="menu" aria-label="Sous-menu Partenaires">
+              <Link href="/partenaires/essec" className="nav-link subnav-link" role="menuitem" onClick={() => setPartnersOpen(false)}>Partenariat ESSEC</Link>
+              <Link href="/partenaires/professionnels" className="nav-link subnav-link" role="menuitem" onClick={() => setPartnersOpen(false)}>Partenaires professionnels</Link>
+            </div>
+          </div>
         </nav>
 
         {/* centered logo */}
@@ -85,7 +105,7 @@ export default function Header() {
             </span>
             <div className="subnav" role="menu" aria-label="Sous-menu Étudiants">
               <Link href="/etudiants/promotions" className="nav-link subnav-link" role="menuitem" onClick={() => setStudentsOpen(false)}>Promotions</Link>
-              <Link href="/etudiants/que-sont-ils-devenues" className="nav-link subnav-link" role="menuitem" onClick={() => setStudentsOpen(false)}>Que sont‑ils devenues</Link>
+              <Link href="/etudiants/que-sont-ils-devenus" className="nav-link subnav-link" role="menuitem" onClick={() => setStudentsOpen(false)}>Que sont‑ils devenus</Link>
             </div>
           </div>
           <Link href="/formation" className="nav-link">
