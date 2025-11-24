@@ -73,9 +73,9 @@ const promotions = [
 export default function PromotionsPage() {
   // sort promotions by starting year (newest first)
   const sortedPromotions = [...promotions].sort((a, b) => {
-    const ya = (a.title.match(/\d{4}/) || [0])[0];
-    const yb = (b.title.match(/\d{4}/) || [0])[0];
-    return parseInt(yb) - parseInt(ya);
+    const ya = (a.title.match(/\d{4}/) || ["0"])[0];
+    const yb = (b.title.match(/\d{4}/) || ["0"])[0];
+    return parseInt(yb, 10) - parseInt(ya, 10);
   });
 
   const [selectedId, setSelectedId] = useState(sortedPromotions[0].id);

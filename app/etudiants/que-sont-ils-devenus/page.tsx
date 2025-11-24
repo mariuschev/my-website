@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { allura } from "../../lib/fonts";
 
@@ -18,6 +17,25 @@ export default function AlumniFollowupPage() {
         <div className="text-left mb-8">
           <h1 className={`${allura.className} text-5xl text-[#590707] drop-shadow-sm`}>Que sont‑ils devenus ?</h1>
           <p className="mt-3 text-lg text-zinc-700 font-light tracking-wide">Suivi des alumni — parcours professionnels, témoignages et contacts.</p>
+        </div>
+
+        <div className="flex items-center justify-between mb-8 gap-6">
+          <p className="text-zinc-600">Retrouvez ci‑dessous quelques anciens et si vous faites partie du réseau, ajoutez‑vous :</p>
+
+          <div className="flex-shrink-0">
+            <a
+              href="https://docs.google.com/forms/d/e/FORM_ID/viewform"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-full font-medium shadow-sm border border-[#590707] text-[#590707] bg-white hover:bg-[#F7EDED] transition"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="opacity-90">
+                <circle cx="12" cy="12" r="10" stroke="#590707" strokeWidth="1.5" />
+                <path d="M12 8v8M8 12h8" stroke="#590707" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Inscrivez‑vous au réseau alumni
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
