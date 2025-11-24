@@ -1,12 +1,42 @@
 import Link from "next/link";
+import Image from "next/image";
+import { allura } from "../../lib/fonts";
+
+const alumni = [
+  { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+  { name: "Thomas Girard", title: "Juriste d'entreprise", desc: "En charge de la conformité et contrats internationaux.", photo: "/photos_actualites/alumni/exemple.png" },
+  { name: "Camille Dubois", title: "Doctorante", desc: "Recherche en droit des affaires et nouvelles technologies.", photo: "/photos_actualites/alumni/exemple.png" },
+  { name: "Lucas Martin", title: "Consultant", desc: "Conseil en stratégie juridique pour les start‑ups.", photo: "/photos_actualites/alumni/exemple.png" },
+  { name: "Inès Moreau", title: "Magistrate", desc: "Auditrice au sein d'une juridiction administrative.", photo: "/photos_actualites/alumni/exemple.png" },
+  { name: "Antoine Bernard", title: "Entrepreneur", desc: "Fondateur d'une legaltech spécialisée en contrats intelligents.", photo: "/photos_actualites/alumni/exemple.png" },
+];
 
 export default function AlumniFollowupPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="text-3xl font-extrabold">Que sont‑ils devenus ?</h1>
-      <p className="mt-4">Page dédiée au suivi des anciens étudiants — parcours professionnels, témoignages, contacts.</p>
-      <p className="mt-6">(Contenu à compléter — ajouter témoignages, filtrage par promotion, etc.)</p>
-      <p className="mt-8"><Link href="/etudiants" className="cta">Retour</Link></p>
+    <main className="min-h-screen bg-white py-24">
+      <div className="mx-auto max-w-screen-xl px-8">
+        <div className="text-left mb-8">
+          <h1 className={`${allura.className} text-5xl text-[#590707] drop-shadow-sm`}>Que sont‑ils devenus ?</h1>
+          <p className="mt-3 text-lg text-zinc-700 font-light tracking-wide">Suivi des alumni — parcours professionnels, témoignages et contacts.</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {alumni.map((a) => (
+            <article key={a.name} className="bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-md">
+              <div className="w-full h-56 md:h-64 relative">
+                <Image src={a.photo} alt={a.name} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover" />
+              </div>
+
+              <div className="p-6">
+                <div className="h-1 w-24 bg-gradient-to-r from-[#590707] to-[#A30404] rounded mb-4" />
+                <h3 className="text-2xl font-semibold text-[#590707]">{a.name}</h3>
+                <div className="text-sm text-[#A30404] font-medium mt-1">{a.title}</div>
+                <p className="mt-3 text-zinc-700">{a.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </main>
   );
 }
