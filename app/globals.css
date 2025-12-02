@@ -12,13 +12,18 @@
   --color-grey: #736D66;
   --color-blackish: #04090C;
   /* header offset used to avoid content being hidden by fixed header */
-  --site-header-offset: 120px;
+  --site-header-offset: 88px;
 }
 
 /* Prevent layout shift when pages have/don't have a vertical scrollbar */
 html {
   overflow-y: scroll; /* always reserve scrollbar gutter on desktop browsers */
   scrollbar-gutter: stable; /* newer browsers: keep gutter stable to avoid shifts */
+}
+
+/* Prevent horizontal swipe / overflow on mobile by default */
+html, body {
+  overflow-x: hidden;
 }
 
 @theme inline {

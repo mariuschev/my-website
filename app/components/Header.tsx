@@ -8,10 +8,13 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const pathname = usePathname();
   const [isHidden, setIsHidden] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [studentsOpen, setStudentsOpen] = useState(false);
   const studentsRef = useRef<HTMLDivElement | null>(null);
   const [partnersOpen, setPartnersOpen] = useState(false);
   const partnersRef = useRef<HTMLDivElement | null>(null);
+  const [mobileStudentsOpen, setMobileStudentsOpen] = useState(false);
+  const [mobilePartnersOpen, setMobilePartnersOpen] = useState(false);
 
   // Hide header after a certain scroll distance (px)
   const HIDE_AFTER_PX = 200;
@@ -38,10 +41,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // close mobile menu when route changes
+  useEffect(() => {
+    setMobileOpen(false);
+    setMobileStudentsOpen(false);
+    setMobilePartnersOpen(false);
+  }, [pathname]);
+
   // Header is shown on all pages (including homepage) so it can overlay the hero
-  if (pathname === "/") {
-    return null;
-  }
 
   return (
     <header className={`site-header shadow-sm sticky top-0 z-50 ${isHidden ? "site-header--hidden" : ""}`}>
@@ -79,7 +86,7 @@ export default function Header() {
 
         {/* centered logo */}
         <Link href="/" className="flex items-center justify-center">
-          <Image src="/logo.png" alt="M214" width={140} height={140} />
+          <Image src="/logo.png" alt="M214" width={120} height={120} />
         </Link>
 
         {/* right links */}
@@ -112,7 +119,94 @@ export default function Header() {
             Formation
           </Link>
         </nav>
+
+        {/* mobile: hamburger + simple right spacer */}
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((s) => !s)}
+            className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            {/* hamburger / close icon */}
+            {mobileOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 18L18 6M6 6l12 12" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile dropdown panel (under header) */}
+      {mobileOpen && (
+        <div className="md:hidden absolute left-0 right-0 top-full z-40 bg-white border-t shadow-md">
+          <div className="p-4">
+            <nav className="mt-4 flex flex-col gap-2 text-base">
+              <Link href="/accueil" className="nav-link" onClick={() => setMobileOpen(false)}>
+                Accueil
+              </Link>
+              <Link href="/actualites" className="nav-link" onClick={() => setMobileOpen(false)}>
+                Actualités
+              </Link>
+
+              <div>
+                <button
+                  className="nav-link flex w-full justify-between items-center"
+                  onClick={() => setMobilePartnersOpen((s) => !s)}
+                  aria-expanded={mobilePartnersOpen}
+                >
+                  <span>Nos partenaires</span>
+                  <span className="ml-2">{mobilePartnersOpen ? "–" : "+"}</span>
+                </button>
+                {mobilePartnersOpen && (
+                  <div className="pl-3 mt-2 flex flex-col gap-1">
+                    <Link href="/partenaires/essec" className="subnav-link" onClick={() => setMobileOpen(false)}>
+                      Partenariat ESSEC
+                    </Link>
+                    <Link href="/partenaires/professionnels" className="subnav-link" onClick={() => setMobileOpen(false)}>
+                      Partenaires professionnels
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link href="/association" className="nav-link" onClick={() => setMobileOpen(false)}>
+                L'association
+              </Link>
+
+              <div>
+                <button
+                  className="nav-link flex w-full justify-between items-center"
+                  onClick={() => setMobileStudentsOpen((s) => !s)}
+                  aria-expanded={mobileStudentsOpen}
+                >
+                  <span>Étudiants</span>
+                  <span className="ml-2">{mobileStudentsOpen ? "–" : "+"}</span>
+                </button>
+                {mobileStudentsOpen && (
+                  <div className="pl-3 mt-2 flex flex-col gap-1">
+                    <Link href="/etudiants/promotions" className="subnav-link" onClick={() => setMobileOpen(false)}>
+                      Promotions
+                    </Link>
+                    <Link href="/etudiants/que-sont-ils-devenus" className="subnav-link" onClick={() => setMobileOpen(false)}>
+                      Que sont‑ils devenus
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link href="/formation" className="nav-link" onClick={() => setMobileOpen(false)}>
+                Formation
+              </Link>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -14,7 +14,7 @@ export default function Association() {
           <div className="lg:col-span-2">
             <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-md">
               <div className="w-full h-64 md:h-100 relative bg-gray-100">
-                <Image src="/photos_actualites/promotions_membre/Bureau 2025-2026.JPG" alt="Photo du bureau" fill className="object-cover" sizes="150vw" />
+                <Image src="/photos_actualites/promotions_membre/Bureau 2025-2026.JPG" alt="Photo du bureau" fill className="object-cover" sizes="100vw" />
               </div>
 
               <div className="p-8">
