@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
    Metadata du site
 -------------------------------------------- */
 export const metadata: Metadata = {
-  title: "Master 2 Droit des affaires 214",
-  description: "Site de l'association Master 2 Droit des affaires - 214",
+  title: "M2-Affaires | Master 2 Droit des affaires Recherche - U. Panthéon-Assas",
+  description: "Site de l'association du Master 2 Droit des affaires Recherche - Université Paris II Panthéon-Assas.",
 };
 
 /* -------------------------------------------
