@@ -23,12 +23,12 @@ export default function Accueil() {
           <div className="col-span-1 lg:col-span-3">
             <div className="space-y-6">
               <div className="bg-white border border-zinc-100 shadow-md rounded-2xl p-10">
-                <div className="flex gap-6 items-start">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border border-zinc-200 shadow-sm flex-shrink-0">
+                <div className="flex flex-col lg:flex-row gap-6 items-start">
+                  <div className="w-40 h-40 rounded-full overflow-hidden border border-zinc-200 shadow-sm flex-shrink-0 mx-auto lg:mx-0">
                     <Image src="/director.jpg" alt="Photo du directeur" width={160} height={160} className="object-cover" />
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-semibold text-black">Mot du directeur</h2>
+                  <div className="w-full">
+                    <h2 className="text-2xl font-semibold text-black text-center lg:text-left">Mot du directeur</h2>
                     <div className="mt-4 text-zinc-700 leading-relaxed text-lg space-y-4">
                       <p>
                         « C’est un honneur et une responsabilité que d’assurer dorénavant la direction du Master 2
@@ -73,12 +73,12 @@ export default function Accueil() {
               </div>
 
               <div className="bg-white border border-zinc-100 shadow-md rounded-2xl p-10">
-                <div className="flex gap-6 items-start">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border border-zinc-200 shadow-sm flex-shrink-0">
+                <div className="flex flex-col lg:flex-row gap-6 items-start">
+                  <div className="w-40 h-40 rounded-full overflow-hidden border border-zinc-200 shadow-sm flex-shrink-0 mx-auto lg:mx-0">
                     <Image src="/president.jpg" alt="Photo du président" width={160} height={160} className="object-cover" />
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-semibold text-black">Mot du président</h2>
+                  <div className="w-full">
+                    <h2 className="text-2xl font-semibold text-black text-center lg:text-left">Mot du président</h2>
                     <div className="mt-4 text-zinc-700 leading-relaxed text-lg space-y-4">
                       <p>
                         « Reconnue, en France et à l’étranger, pour l’excellence de ses formations juridiques,

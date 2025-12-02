@@ -49,22 +49,14 @@ export default function AnimatedCounters({ items }: { items: Item[] }) {
 
   const count = items.length;
 
-  // responsive grid style: center counters if 1 or 2 items, otherwise distribute
-  const gridStyle: React.CSSProperties =
-    count === 1
-      ? { gridTemplateColumns: "1fr", justifyContent: "center", maxWidth: 720, margin: "0 auto" }
-      : count === 2
-      ? { gridTemplateColumns: "repeat(2, minmax(220px, 360px))", justifyContent: "center", gap: 16, margin: "0 auto" }
-      : { gridTemplateColumns: "repeat(3, minmax(0, 1fr))" };
-
-  const numberClass = count === 2 ? "text-4xl" : "text-3xl";
+  const numberClass = "text-3xl sm:text-4xl font-semibold";
 
   return (
     <div ref={containerRef} className="mt-8">
-      <div className="grid gap-4 text-center" style={gridStyle}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 justify-items-center text-center">
         {items.map((it, idx) => (
-          <div key={idx} className="bg-white border border-zinc-100 rounded-lg p-6 shadow-sm">
-            <div className={`${numberClass} font-semibold text-[#5a0f19]`}>
+          <div key={idx} className="bg-white border border-zinc-100 rounded-lg p-6 shadow-sm w-full sm:max-w-[360px]">
+            <div className={`${numberClass} text-[#5a0f19]`}>
               {current[idx]}
               {it.suffix ?? ""}
             </div>

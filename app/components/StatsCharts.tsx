@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 
 const leftData = [
@@ -25,6 +25,17 @@ const rightData = [
 ];
 
 export default function StatsCharts() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showLeftLegend, setShowLeftLegend] = useState(false);
+  const [showRightLegend, setShowRightLegend] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(typeof window !== "undefined" ? window.innerWidth < 640 : false);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const common = {
     tooltip: {
       trigger: "item",
@@ -96,18 +107,19 @@ export default function StatsCharts() {
 
   const leftOption = {
     ...common,
-    title: { text: "À la suite du M2", left: "center", top: 6 },
+    // keep the title minimal inside the canvas; we'll also render an HTML title for accessibility
+    title: { text: "", left: "center", top: 8 },
     series: [
       {
         name: "Suite",
         type: "pie",
-        radius: [60, 140],
+        radius: isMobile ? ["30%", "56%"] : ["28%", "60%"],
         center: ["50%", "55%"],
         roseType: "radius",
         data: leftStyled,
         emphasis: { itemStyle: { shadowBlur: 26, shadowOffsetX: 0, shadowColor: "rgba(0,0,0,0.26)" } },
-        label: { formatter: "{b}\n{d}%", color: "#222" },
-        labelLine: { smooth: true, length: 12, length2: 8 },
+        label: { show: !isMobile, formatter: "{b}\n{d}%", color: "#222", fontSize: 11 },
+        labelLine: { smooth: true, length: isMobile ? 6 : 10, length2: isMobile ? 4 : 6 },
       },
     ],
     backgroundColor: "transparent",
@@ -115,36 +127,88 @@ export default function StatsCharts() {
 
   const rightOption = {
     ...common,
-    title: { text: "Expertise 10 dernières promotions 2010-2020", left: "center", top: 6 },
+    title: { text: "", left: "center", top: 8 },
     series: [
       {
         name: "Expertise",
         type: "pie",
-        radius: [60, 140],
+        radius: isMobile ? ["30%", "56%"] : ["28%", "60%"],
         center: ["50%", "55%"],
         roseType: "radius",
         data: rightStyled,
         emphasis: { itemStyle: { shadowBlur: 26, shadowOffsetX: 0, shadowColor: "rgba(0,0,0,0.26)" } },
-        label: { formatter: "{b}\n{d}%", color: "#222" },
-        labelLine: { smooth: true, length: 12, length2: 8 },
+        label: { show: !isMobile, formatter: "{b}\n{d}%", color: "#222", fontSize: 11 },
+        labelLine: { smooth: true, length: isMobile ? 6 : 10, length2: isMobile ? 4 : 6 },
       },
     ],
     backgroundColor: "transparent",
   };
 
-  const containerStyle: React.CSSProperties = { width: "100%", display: "flex", gap: 28, alignItems: "stretch" };
-
   return (
     <div className="mt-8">
-      <div style={containerStyle}>
-        <div style={{ flex: 1, minWidth: 360 }}>
+      <div className="flex flex-col lg:flex-row gap-7 items-stretch w-full">
+        <div className="flex-1 min-w-0">
           <div className="bg-white border border-zinc-100 rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <ReactECharts option={leftOption} style={{ height: 460, width: "100%" }} />
+            <h4 className="text-center font-semibold mb-3">À la suite du M2</h4>
+            <div className="h-72 lg:h-[460px]">
+              <ReactECharts option={leftOption} style={{ height: "100%", width: "100%" }} />
+            </div>
+            {isMobile && (
+              <div className="mt-3">
+                <button
+                  onClick={() => setShowLeftLegend((s) => !s)}
+                  className="text-sm text-[#5a0f19] font-medium"
+                >
+                  {showLeftLegend ? "Masquer les détails" : "Voir les détails"}
+                </button>
+                {showLeftLegend && (
+                  <ul className="mt-2 space-y-2 text-sm text-zinc-700">
+                    {leftData.map((d, i) => (
+                      <li key={d.name} className="flex items-center gap-3">
+                        <span
+                          className="w-3 h-3 rounded-sm"
+                          style={{ background: leftGradients[i % leftGradients.length][0] }}
+                        />
+                        <span className="flex-1">{d.name}</span>
+                        <span className="font-semibold">{d.value}%</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
           </div>
         </div>
-        <div style={{ flex: 1, minWidth: 360 }}>
+        <div className="flex-1 min-w-0">
           <div className="bg-white border border-zinc-100 rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <ReactECharts option={rightOption} style={{ height: 460, width: "100%" }} />
+            <h4 className="text-center font-semibold mb-3">Expertise (10 dernières promotions)</h4>
+            <div className="h-72 lg:h-[460px]">
+              <ReactECharts option={rightOption} style={{ height: "100%", width: "100%" }} />
+            </div>
+            {isMobile && (
+              <div className="mt-3">
+                <button
+                  onClick={() => setShowRightLegend((s) => !s)}
+                  className="text-sm text-[#5a0f19] font-medium"
+                >
+                  {showRightLegend ? "Masquer les détails" : "Voir les détails"}
+                </button>
+                {showRightLegend && (
+                  <ul className="mt-2 space-y-2 text-sm text-zinc-700">
+                    {rightData.map((d, i) => (
+                      <li key={d.name} className="flex items-center gap-3">
+                        <span
+                          className="w-3 h-3 rounded-sm"
+                          style={{ background: rightGradients[i % rightGradients.length][0] }}
+                        />
+                        <span className="flex-1">{d.name}</span>
+                        <span className="font-semibold">{d.value}%</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

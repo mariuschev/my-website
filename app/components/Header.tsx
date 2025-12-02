@@ -47,6 +47,64 @@ export default function Header() {
     setMobileStudentsOpen(false);
     setMobilePartnersOpen(false);
   }, [pathname]);
+
+  // treat anything under 1024px as 'compact' (mobile + tablet iPad range)
+  const [isCompact, setIsCompact] = useState(false);
+  useEffect(() => {
+    const onResize = () => setIsCompact(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // ensure mobile panel closes when switching to desktop layout
+  useEffect(() => {
+    if (!isCompact) setMobileOpen(false);
+  }, [isCompact]);
+  // touch swipe detection: close mobile menu when user swipes down
+  const touchStartYRef = React.useRef<number | null>(null);
+  const touchStartXRef = React.useRef<number | null>(null);
+  useEffect(() => {
+    if (!isCompact || !mobileOpen) return;
+
+    const panel = document.querySelector(".site-header + div, .absolute.left-0.right-0.top-full");
+    // fallback to window if panel not found
+    const target: EventTarget = panel || window;
+
+    const onTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      touchStartYRef.current = t.clientY;
+      touchStartXRef.current = t.clientX;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (touchStartYRef.current == null) return;
+      const t = e.touches[0];
+      const deltaY = t.clientY - (touchStartYRef.current || 0);
+      const deltaX = t.clientX - (touchStartXRef.current || 0);
+      // trigger when swipe is mostly vertical and going down
+      if (deltaY > 50 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2) {
+        setMobileOpen(false);
+        touchStartYRef.current = null;
+        touchStartXRef.current = null;
+      }
+    };
+
+    const onTouchEnd = () => {
+      touchStartYRef.current = null;
+      touchStartXRef.current = null;
+    };
+
+    (target as any).addEventListener?.("touchstart", onTouchStart, { passive: true });
+    (target as any).addEventListener?.("touchmove", onTouchMove, { passive: true });
+    (target as any).addEventListener?.("touchend", onTouchEnd, { passive: true });
+
+    return () => {
+      (target as any).removeEventListener?.("touchstart", onTouchStart);
+      (target as any).removeEventListener?.("touchmove", onTouchMove);
+      (target as any).removeEventListener?.("touchend", onTouchEnd);
+    };
+  }, [isCompact, mobileOpen]);
   if (pathname === "/") {
     return null;
   }
@@ -57,7 +115,8 @@ export default function Header() {
     <header className={`site-header shadow-sm sticky top-0 z-50 ${isHidden ? "site-header--hidden" : ""}`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         {/* left links */}
-        <nav className="hidden md:flex items-center gap-6">
+        {!isCompact && (
+          <nav className="hidden md:flex items-center gap-6">
           <Link href="/accueil" className="nav-link">
             Accueil
           </Link>
@@ -85,7 +144,8 @@ export default function Header() {
               <Link href="/partenaires/professionnels" className="nav-link subnav-link" role="menuitem" onClick={() => setPartnersOpen(false)}>Partenaires professionnels</Link>
             </div>
           </div>
-        </nav>
+          </nav>
+        )}
 
         {/* centered logo */}
         <Link href="/" className="flex items-center justify-center">
@@ -93,7 +153,8 @@ export default function Header() {
         </Link>
 
         {/* right links */}
-        <nav className="hidden md:flex items-center gap-6">
+        {!isCompact && (
+          <nav className="hidden md:flex items-center gap-6">
           <Link href="/association" className="nav-link">
             L'association
           </Link>
@@ -121,10 +182,12 @@ export default function Header() {
           <Link href="/formation" className="nav-link">
             Formation
           </Link>
-        </nav>
+          </nav>
+        )}
 
-        {/* mobile: hamburger + simple right spacer */}
-        <div className="flex items-center gap-3 md:hidden">
+        {/* mobile/tablet: hamburger + simple right spacer */}
+        {isCompact && (
+          <div className="flex items-center gap-3">
           <button
             aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={mobileOpen}
@@ -142,12 +205,13 @@ export default function Header() {
               </svg>
             )}
           </button>
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Mobile dropdown panel (under header) */}
-      {mobileOpen && (
-        <div className="md:hidden absolute left-0 right-0 top-full z-40 bg-white border-t shadow-md">
+      {mobileOpen && isCompact && (
+        <div className="absolute left-0 right-0 top-full z-40 bg-white border-t shadow-md">
           <div className="p-4">
             <nav className="mt-4 flex flex-col gap-2 text-base">
               <Link href="/accueil" className="nav-link" onClick={() => setMobileOpen(false)}>
