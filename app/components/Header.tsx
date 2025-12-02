@@ -47,6 +47,9 @@ export default function Header() {
     setMobileStudentsOpen(false);
     setMobilePartnersOpen(false);
   }, [pathname]);
+  if (pathname === "/") {
+    return null;
+  }
 
   // Header is shown on all pages (including homepage) so it can overlay the hero
 
