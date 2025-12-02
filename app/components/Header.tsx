@@ -15,6 +15,9 @@ export default function Header() {
   const partnersRef = useRef<HTMLDivElement | null>(null);
   const [mobileStudentsOpen, setMobileStudentsOpen] = useState(false);
   const [mobilePartnersOpen, setMobilePartnersOpen] = useState(false);
+  // states to animate mobile panel open/close smoothly
+  const [mobilePanelVisible, setMobilePanelVisible] = useState(false);
+  const [mobilePanelClosing, setMobilePanelClosing] = useState(false);
 
   // Hide header after a certain scroll distance (px)
   const HIDE_AFTER_PX = 200;
@@ -59,7 +62,14 @@ export default function Header() {
 
   // ensure mobile panel closes when switching to desktop layout
   useEffect(() => {
-    if (!isCompact) setMobileOpen(false);
+    if (!isCompact) {
+      setMobileOpen(false);
+      setMobilePanelVisible(false);
+      setMobilePanelClosing(false);
+      return;
+    }
+    // keep panel visible while switching to compact
+    if (isCompact && mobileOpen) setMobilePanelVisible(true);
   }, [isCompact]);
   // touch swipe detection: close mobile menu when user swipes down
   const touchStartYRef = React.useRef<number | null>(null);
@@ -105,6 +115,69 @@ export default function Header() {
       (target as any).removeEventListener?.("touchend", onTouchEnd);
     };
   }, [isCompact, mobileOpen]);
+  // close mobile menu when user navigates inside the same page or scrolls
+  useEffect(() => {
+    if (!isCompact || !mobileOpen) return;
+
+    const onHashChange = () => {
+      setMobileOpen(false);
+      setMobileStudentsOpen(false);
+      setMobilePartnersOpen(false);
+    };
+
+    const onDocumentClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      // if user clicked an in-page anchor like <a href="#something">
+      const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (anchor) {
+        setMobileOpen(false);
+        setMobileStudentsOpen(false);
+        setMobilePartnersOpen(false);
+      }
+    };
+
+    const onScrollClose = () => {
+      // if the user scrolls (e.g. to the bottom), hide the mobile menu
+      if ((window.scrollY || 0) > 0) {
+        setMobileOpen(false);
+        setMobileStudentsOpen(false);
+        setMobilePartnersOpen(false);
+      }
+    };
+
+    window.addEventListener("hashchange", onHashChange);
+    document.addEventListener("click", onDocumentClick, true);
+    window.addEventListener("scroll", onScrollClose, { passive: true });
+
+    return () => {
+      window.removeEventListener("hashchange", onHashChange);
+      document.removeEventListener("click", onDocumentClick, true);
+      window.removeEventListener("scroll", onScrollClose);
+    };
+  }, [isCompact, mobileOpen]);
+
+  // manage panel mount/unmount to allow smooth CSS transitions
+  useEffect(() => {
+    if (!isCompact) return;
+
+    if (mobileOpen) {
+      // open immediately
+      setMobilePanelClosing(false);
+      setMobilePanelVisible(true);
+      return;
+    }
+
+    // if mobileOpen went false but panel is visible, trigger closing animation
+    if (mobilePanelVisible && !mobileOpen) {
+      setMobilePanelClosing(true);
+      const t = window.setTimeout(() => {
+        setMobilePanelVisible(false);
+        setMobilePanelClosing(false);
+      }, 620); // match CSS transition length (600ms) + small buffer
+      return () => window.clearTimeout(t);
+    }
+  }, [mobileOpen, isCompact, mobilePanelVisible]);
   if (pathname === "/") {
     return null;
   }
@@ -210,8 +283,12 @@ export default function Header() {
       </div>
 
       {/* Mobile dropdown panel (under header) */}
-      {mobileOpen && isCompact && (
-        <div className="absolute left-0 right-0 top-full z-40 bg-white border-t shadow-md">
+      {isCompact && (mobilePanelVisible || mobilePanelClosing) && (
+        <div
+          className={`absolute left-0 right-0 top-full z-40 bg-white border-t shadow-md mobile-panel ${
+            mobileOpen ? "mobile-panel--open" : ""
+          } ${mobilePanelClosing ? "mobile-panel--closing" : ""}`}
+        >
           <div className="p-4">
             <nav className="mt-4 flex flex-col gap-2 text-base">
               <Link href="/accueil" className="nav-link" onClick={() => setMobileOpen(false)}>
