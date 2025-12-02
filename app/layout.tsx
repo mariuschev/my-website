@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Allura } from "next/font/google";
-import { allura } from "./lib/fonts";
+// removed Allura / allura imports: site will use default fonts for headings
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -16,9 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/* -------------------------------------------
-  🔥 Police cursive Allura (calligraphique)
--------------------------------------------- */
+/* Allura removed: headings use the site's default typography now */
 
 /* -------------------------------------------
    Metadata du site

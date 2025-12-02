@@ -1,21 +1,35 @@
 'use client';
 
-import { allura } from "../lib/fonts";
+// removed `allura` font import to use the site's default typography for page titles
 
 export default function FormationPage() {
   return (
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-5xl px-6">
         <header className="text-center mb-12">
-          <h1 className={`${allura.className} text-6xl text-[#5a0f19]`}>La Formation en Master 2 Droit des affaires</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">La Formation en Master 2 Droit des affaires</h1>
         </header>
 
         <section className="bg-white border border-zinc-100 rounded-2xl p-8 shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Mot du professeur Daniel Cohen</h2>
-          <p className="text-zinc-700 leading-relaxed">Le Master 2 Droit des affaires (Recherche) forme des juristes capables d’aborder des problématiques complexes du droit des affaires, tant sur le plan national qu’international. Les débouchés sont variés : carrières en cabinets d’avocats spécialisés, services juridiques d’entreprises, institutions financières, postes dans la recherche et l’enseignement. La sélection vise à réunir des étudiants de haut niveau et une forte motivation pour la recherche.</p>
+        <h2 className="text-2xl font-semibold mb-4">Mot du professeur Daniel Cohen</h2>
+        
+        <p className="text-zinc-700 leading-relaxed">
+          <strong>
+            Le Master 2 Droit des affaires (Recherche) forme des juristes capables d’aborder des problématiques complexes du droit des affaires, tant sur le plan national qu’international. 
+            Les débouchés sont variés : carrières en cabinets d’avocats spécialisés, services juridiques d’entreprises, institutions financières, postes dans la recherche et l’enseignement. 
+            La sélection vise à réunir des étudiants de haut niveau et une forte motivation pour la recherche.
+          </strong>
+        </p>
 
-          <p className="mt-4 text-zinc-700">Mémoire de fin d’études : oui — chaque étudiant rédige un mémoire de recherche en fin de Master 2. Le mémoire a pour but de développer une problématique précise, de mobiliser une méthode de recherche juridique (doctrine, jurisprudence, droit comparé, analyse doctrinale) et d’apporter une contribution argumentée à un domaine du droit des affaires.</p>
-        </section>
+        <p className="mt-4 text-zinc-700">
+          <strong>
+            Mémoire de fin d’études : oui — chaque étudiant rédige un mémoire de recherche en fin de Master 2. 
+            Le mémoire a pour but de développer une problématique précise, de mobiliser une méthode de recherche juridique 
+            (doctrine, jurisprudence, droit comparé, analyse doctrinale) et d’apporter une contribution argumentée à un domaine du droit des affaires.
+          </strong>
+        </p>
+      </section>
+
 
         {/* Nos objectifs section (moved from Accueil) */}
         <section className="mt-6 mb-8">
@@ -127,13 +141,13 @@ export default function FormationPage() {
         </section>
 
         <section className="bg-white border border-zinc-100 rounded-2xl p-8 shadow-md mb-8">
-          <h3 className="text-xl font-semibold mb-3">Mineurs (exemples d'enseignements)</h3>
+          <h3 className="text-xl font-semibold mb-3">Enseignements optionnels</h3>
           <ul className="list-inside list-disc text-zinc-700 space-y-1">
             <li>Droit des opérations financières : France DRUMMOND</li>
             <li>Droit bancaire, financier et monétaire international : Stéphane TORCK</li>
             <li>Droit européen des affaires : Marie-Hélène MONSÈRIÉ-BON</li>
             <li>Droit fiscal des affaires : Me Anne ROBERT (Cabinet Bredin Prat)</li>
-            <li>Droit pénal des affaires : Didier REBUT / Jérôme CHACORNAC</li>
+            <li>Droit pénal des affaires : Didier REBUT</li>
             <li>Droit de la concurrence et de la distribution : Emmanuelle CLAUDEL</li>
             <li>Comptabilité de l’entreprise privée : Matthieu DUBERTRET</li>
             <li>Droit des assurances : Laurent LEVENEUR</li>

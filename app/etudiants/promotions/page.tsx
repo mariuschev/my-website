@@ -3,50 +3,45 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { allura } from "../../lib/fonts";
+// removed `allura` font import to use the site's default typography for page titles
 
 const promotions = [
   {
     id: "p24",
     title: "Promotion 2024-2025",
-    short: "Promotion 2024-2025 — une belle cohorte engagée.",
+    // short: "Promotion 2024-2025 — une belle cohorte engagée.",
     img: "/photos_actualites/promotions/promo_24_25.jpeg",
   },
   {
     id: "p23",
     title: "Promotion 2023-2024",
-    short: "Promotion 2023-2024 — professionnalisme et rigueur.",
-    img: "/photos_actualites/promotions/exemple.jpg",
+    //short: "Promotion 2023-2024 — professionnalisme et rigueur.",
+    img: "/photos_actualites/promotions/promo_23_24.jpg",
   },
   {
     id: "p22",
     title: "Promotion 2022-2023",
-    short: "Promotion 2022-2023 — en réseau et curieuse.",
+    //short: "Promotion 2022-2023 — en réseau et curieuse.",
     img: "/photos_actualites/promotions/promo_22_23.jpeg",
   },
   {
     id: "p21",
     title: "Promotion 2021-2022",
-    short: "Promotion 2021-2022 — expérience et mentoring.",
+    //short: "Promotion 2021-2022 — expérience et mentoring.",
     img: "/photos_actualites/promotions/promo_21_23.jpg",
   },
   {
     id: "p20",
     title: "Promotion 2020-2021",
-    short: "Promotion 2020-2021 — résiliente et ambitieuse.",
+    //short: "Promotion 2020-2021 — résiliente et ambitieuse.",
     img: "/photos_actualites/promotions/promo_20_21.jpg",
   },
-  {
-    id: "p19",
-    title: "Promotion 2019-2020",
-    short: "Promotion 2019-2020 — innovante et solidaire.",
-    img: "/photos_actualites/promotions/promo_18_19.jpg",
-  },
+
   {
     id: "p25",
     title: "Promotion 2025-2026",
-    short: "Promotion 2025-2026 — l'équipe actuelle, dynamique et engagée.",
-    img: "/photos_actualites/promotions/exemple.jpg",
+    //short: "Promotion 2025-2026 — l'équipe actuelle, dynamique et engagée.",
+    img: "/photos_actualites/promotions/promo_25_26.JPG",
     members: [
       {
         name: "Alice Dupont",
@@ -85,7 +80,7 @@ export default function PromotionsPage() {
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-screen-xl px-8">
         <div className="text-left mb-8">
-          <h1 className={`${allura.className} text-5xl text-[#5a0f19] drop-shadow-sm`}>Promotions</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">Promotions</h1>
           <p className="mt-3 text-lg text-zinc-700 font-light tracking-wide">Accédez aux fiches des promotions — cliquez à droite pour naviguer.</p>
         </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { allura } from "../../lib/fonts";
+// removed `allura` font import to use the site's default typography for page titles
 import Image from "next/image";
 import Link from "next/link";
 import ExpandableText from "../../components/ExpandableText";
@@ -10,7 +10,7 @@ export default function PartenariatESSEC() {
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-7xl px-8">
         <div className="text-center mb-12">
-          <h1 className={`${allura.className} text-7xl text-[#5a0f19] drop-shadow-sm`}>Le Partenariat ESSEC</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">Le Partenariat ESSEC</h1>
 
           <div className="mt-6 flex flex-col lg:flex-row items-start justify-center gap-8 max-w-4xl mx-auto">
             {/* Large centered ESSEC logo for prominence */}
@@ -47,10 +47,10 @@ export default function PartenariatESSEC() {
             </p>
             <ol className="list-decimal list-inside text-zinc-700 space-y-2">
               <li>
-                <strong>a)</strong> de l’accès à l’épreuve d’admission au Mastère Spécialisé (MS) « Droit des affaires Internationales et Management » de l’ESSEC;
+                <strong>1)</strong> de l’accès à l’épreuve d’admission au Mastère Spécialisé (MS) « Droit des affaires Internationales et Management » de l’ESSEC;
               </li>
               <li>
-                <strong>b)</strong> de l’admissibilité automatique et de l’accès aux épreuves d’admission en deuxième année au programme Grande École de l’ESSEC. Le parcours imposé en cycle Master prendra en compte les acquis académiques et professionnels des candidats admis.
+                <strong>2)</strong> de l’admissibilité automatique et de l’accès aux épreuves d’admission en deuxième année au programme Grande École de l’ESSEC. Le parcours imposé en cycle Master prendra en compte les acquis académiques et professionnels des candidats admis.
               </li>
             </ol>
           </div>

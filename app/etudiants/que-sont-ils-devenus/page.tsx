@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { allura } from "../../lib/fonts";
+// removed `allura` font import to use the site's default typography for page titles
 
 const alumni = [
-  { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
-  { name: "Thomas Girard", title: "Juriste d'entreprise", desc: "En charge de la conformité et contrats internationaux.", photo: "/photos_actualites/alumni/exemple.png" },
-  { name: "Camille Dubois", title: "Doctorante", desc: "Recherche en droit des affaires et nouvelles technologies.", photo: "/photos_actualites/alumni/exemple.png" },
-  { name: "Lucas Martin", title: "Consultant", desc: "Conseil en stratégie juridique pour les start‑ups.", photo: "/photos_actualites/alumni/exemple.png" },
-  { name: "Inès Moreau", title: "Magistrate", desc: "Auditrice au sein d'une juridiction administrative.", photo: "/photos_actualites/alumni/exemple.png" },
-  { name: "Antoine Bernard", title: "Entrepreneur", desc: "Fondateur d'une legaltech spécialisée en contrats intelligents.", photo: "/photos_actualites/alumni/exemple.png" },
+    { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+    { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+    { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+    { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+    { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+    { name: "Marie Lefevre", title: "Avocate associée", desc: "Spécialisée en fusions‑acquisitions.", photo: "/photos_actualites/alumni/exemple.png" },
+    
 ];
 
 export default function AlumniFollowupPage() {
@@ -15,7 +16,7 @@ export default function AlumniFollowupPage() {
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-screen-xl px-8">
         <div className="text-left mb-8">
-          <h1 className={`${allura.className} text-5xl text-[#590707] drop-shadow-sm`}>Que sont‑ils devenus ?</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">Que sont‑ils devenus ?</h1>
           <p className="mt-3 text-lg text-zinc-700 font-light tracking-wide">Suivi des alumni — parcours professionnels, témoignages et contacts.</p>
         </div>
 

@@ -1,6 +1,4 @@
-import { Allura } from "next/font/google";
+// Allura font has been removed from the project.
+// Headings now use the site's default typography (see individual page components).
 
-export const allura = Allura({
-  subsets: ["latin"],
-  weight: "400",
-});
+export {};

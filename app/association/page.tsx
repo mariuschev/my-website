@@ -1,20 +1,20 @@
 import Image from "next/image";
-import { allura } from "../lib/fonts";
+// removed `allura` font import to use the site's default typography for page titles
 
 export default function Association() {
   return (
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-screen-xl px-8">
         <div className="text-left mb-8">
-          <h1 className={`${allura.className} text-5xl text-[#590707] drop-shadow-sm`}>L'association</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">L'association</h1>
           <p className="mt-3 text-lg text-zinc-700 font-light tracking-wide">Présentation de l'équipe du bureau et de ses missions.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-md">
-              <div className="w-full h-64 md:h-80 relative bg-gray-100">
-                <Image src="/photos_actualites/promotions/exemple.jpg" alt="Photo du bureau" fill className="object-cover" sizes="100vw" />
+              <div className="w-full h-64 md:h-100 relative bg-gray-100">
+                <Image src="/photos_actualites/promotions_membre/Bureau 2025-2026.JPG" alt="Photo du bureau" fill className="object-cover" sizes="150vw" />
               </div>
 
               <div className="p-8">
@@ -143,7 +143,7 @@ export default function Association() {
               <h4 className="text-base font-semibold text-zinc-800">Contact</h4>
               <p className="text-sm text-zinc-500 mt-2">Besoin d'information sur l'association, partenariat ou recrutement ?</p>
               <div className="mt-4">
-                <a href="mailto:m2daf@gmail.com" className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#590707] text-[#590707] hover:bg-[#590707] hover:text-white transition">Contactez‑nous</a>
+                <a href="mailto:master2affaires@gmail.com" className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#590707] text-[#590707] hover:bg-[#590707] hover:text-white transition">Contactez‑nous</a>
               </div>
             </div>
           </aside>

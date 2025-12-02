@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { allura } from "../lib/fonts";
+// removed `allura` font import to use the site's default typography for the page title
 import GoogleMapEmbed from "../components/GoogleMapEmbed";
 import { FiMail } from "react-icons/fi";
 import AnimatedCounters from "../components/AnimatedCounters";
@@ -14,13 +14,9 @@ export default function Accueil() {
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-screen-xl px-8">
         <div className="text-center mb-20">
-          <h1 className={`${allura.className} text-7xl text-[#5a0f19] drop-shadow-sm`}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">
             Master 2 — Accueil
           </h1>
-
-          <p className="mt-6 text-lg text-zinc-700 font-light tracking-wide">
-            Présentation, mot du directeur, distinctions et chiffres clés du Master.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -153,10 +149,10 @@ export default function Accueil() {
         <div className="bg-white border border-zinc-100 rounded-2xl p-6 shadow-sm">
           <h3 className="text-xl font-semibold">Où nous trouver</h3>
           <div className="mt-4">
-            <GoogleMapEmbed query={`Université Paris II Panthéon-Assas 12, place Panthéon 75005 Paris`} zoom={16} height={480} />
+            <GoogleMapEmbed query={`87 rue Notre-Dame des Champs`} zoom={16} height={480} />
             <div className="mt-6 flex justify-center">
               <a
-                href="mailto:m2daf@gmail.com"
+                href="mailto:master2affaires@gmail.com"
                 className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#5a0f19] text-[#5a0f19] bg-white transition-transform duration-200 transform hover:-translate-y-0.5 hover:scale-101 hover:shadow-lg hover:bg-gradient-to-r hover:from-[#5a0f19] hover:to-[#7a1a21] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#5a0f19]"
               >
                 <FiMail className="text-xl" />

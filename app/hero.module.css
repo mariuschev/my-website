@@ -50,7 +50,7 @@
   inset: 0;
   z-index: 1; /* sits above backgrounds (z:0) and below content (z:10) */
   /* semi-transparent bordeaux so the image is visible through the color */
-  background-color: rgba(var(--color-maroon-rgb), 0.65);
+  background-color: rgba(var(--color-maroon-rgb), 0.45);
   /* keep pointer events off so overlay doesn't block interactions */
   pointer-events: none;
   /* gentle fade when toggling or during page transitions */

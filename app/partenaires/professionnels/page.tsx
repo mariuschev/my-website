@@ -1,4 +1,4 @@
-import { allura } from "../../lib/fonts";
+// removed `allura` font import to use the site's default typography for page titles
 import PartnerGrid from "../../components/PartnerGrid";
 
 const partners = [
@@ -44,7 +44,7 @@ export default function PartenairesProfessionnels() {
     <main className="min-h-screen bg-white py-24">
       <div className="mx-auto max-w-7xl px-8">
         <div className="text-center mb-12">
-          <h1 className={`${allura.className} text-7xl text-[#5a0f19] drop-shadow-sm`}>Partenaires professionnels</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-[#5a0f19] mb-4">Partenaires professionnels</h1>
           <p className="mt-6 text-lg text-zinc-700 font-light tracking-wide max-w-3xl mx-auto">
             L’association du Master organise chaque année de nombreuses rencontres au sein des cabinets
             partenaires afin de renforcer les liens entre étudiants et professionnels et favoriser l’insertion.
