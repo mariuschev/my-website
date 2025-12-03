@@ -117,7 +117,7 @@ Notre priorité cette année est de structurer un réseau solide et accessible, 
                   <li className="flex items-start gap-4">
                     <div className="flex-none w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-[#590707] to-[#A30404] text-white font-bold">1</div>
                     <div>
-                      <h4 className="font-semibold text-black">Renforcer le lien école‑entreprise</h4>
+                      <h4 className="font-semibold text-black">Renforcer le lien avec les cabinets d’avocats</h4>
                       <p className="text-zinc-700">Multiplier les opportunités de stages et faciliter l'accueil de nos étudiants en entreprises.</p>
                     </div>
                   </li>

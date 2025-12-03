@@ -52,12 +52,18 @@ const promotions = [
       {
         name: "Maud Cohen",
         role: "Co-Présidente",
-        photo: "/photos_actualites/promotions_membre/image_2.png",
+        photo: "/photos_actualites/promotions_membre/image_2_1.png",
       },
       {
         name: "⁠Savana Abbal",
-        role: "Secrétaire Générale et Trésorier",
+        role: "Secrétaire Générale",
         photo: "/photos_actualites/promotions_membre/image_3.png",
+      },
+
+      {
+        name: "Youssef Sayarh",
+        role: "Trésorier",
+        photo: "/photos_actualites/promotions_membre/image_7.png",
       },
 
       {
@@ -69,7 +75,7 @@ const promotions = [
       {
         name: "Victor Schneider",
         role: "Chargé communication",
-        photo: "/photos_actualites/promotions_membre/image_5.png",
+        photo: "/photos_actualites/promotions_membre/image_5_2.png",
       },
 
       {
