@@ -45,22 +45,37 @@ const promotions = [
     img: "/photos_actualites/promotions/promo_25_26.JPG",
     members: [
       {
-        name: "Alice Dupont",
-        role: "Présidente",
-        desc: "Coordonne l'association et supervise les projets partenaires.",
-        photo: "/photos_actualites/promotions_membre/exemple.png",
+        name: "⁠Yasmine Sebou",
+        role: "Co-Présidente",
+        photo: "/photos_actualites/promotions_membre/image_1.png",
       },
       {
-        name: "Karim Ben",
-        role: "Trésorier",
-        desc: "Gère le budget et les partenariats financiers.",
-        photo: "/photos_actualites/promotions_membre/exemple.png",
+        name: "Maud Cohen",
+        role: "Co-Présidente",
+        photo: "/photos_actualites/promotions_membre/image_2.png",
       },
       {
-        name: "Sophie Martin",
-        role: "Responsable communication",
-        desc: "S'occupe des réseaux et de la promotion des événements.",
-        photo: "/photos_actualites/promotions_membre/exemple.png",
+        name: "⁠Savana Abbal",
+        role: "Secrétaire Générale et Trésorier",
+        photo: "/photos_actualites/promotions_membre/image_3.png",
+      },
+
+      {
+        name: "⁠Mathilde Daumas",
+        role: "Chargée partenariats",
+        photo: "/photos_actualites/promotions_membre/image_4.png",
+      },
+
+      {
+        name: "Victor Schneider",
+        role: "Chargé communication",
+        photo: "/photos_actualites/promotions_membre/image_5.png",
+      },
+
+      {
+        name: "⁠Paola Piendjio",
+        role: "Chargée communication",
+        photo: "/photos_actualites/promotions_membre/image_6.png",
       },
     ],
   },
@@ -105,7 +120,7 @@ export default function PromotionsPage() {
                 {selected.members && (
                   <div className="mt-6">
                     <h3 className="text-lg font-semibold text-black">Membres de la promotion</h3>
-                    <p className="text-sm text-zinc-500 mt-1">Rôles et courtes descriptions</p>
+          
 
                     <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {selected.members.map((m) => (
@@ -116,7 +131,6 @@ export default function PromotionsPage() {
                           <div>
                             <div className="font-semibold text-black">{m.name}</div>
                             <div className="text-sm text-[#5a0f19]">{m.role}</div>
-                            <div className="text-sm text-zinc-600 mt-1">{m.desc}</div>
                           </div>
                         </div>
                       ))}
